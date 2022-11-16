@@ -6,12 +6,14 @@ const player = new Player(iframe);
 
 let currentTimeData = localStorage.getItem('videoplayer-current-time');
 
-try {
-  let currentTime = JSON.parse(currentTimeData);
-  player.setCurrentTime(currentTime);
-} catch (error) {
-  console.log(error.name);
-  console.log(error.message);
+if (currentTimeData) {
+  try {
+    let currentTime = JSON.parse(currentTimeData);
+    player.setCurrentTime(currentTime);
+  } catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+  }
 }
 
 player.on(
