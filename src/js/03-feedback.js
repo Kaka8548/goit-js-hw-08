@@ -2,12 +2,14 @@ import throttle from 'lodash.throttle';
 
 const formEl = document.querySelector('.feedback-form');
 const userData = {};
+const userEmail = formEl.elements.email;
+const userMessage = formEl.elements.message;
 
 const onFormElInput = event => {
   event.preventDefault();
-  const { target } = event;
 
-  userData[target.name] = target.value;
+  userData.email = userEmail.value;
+  userData.message = userMessage.value;
 
   localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 };
@@ -31,9 +33,7 @@ fillFormElements();
 
 const onFormElSumbit = event => {
   event.preventDefault();
-  const userEmail = formEl.elements.email.value;
-  const userMessage = formEl.elements.message.value;
-  console.log(`User email: ${userEmail}, message: ${userMessage}`);
+  console.log(`User email: ${userEmail.value}, message: ${userMessage.value}`);
 
   event.target.reset();
   localStorage.removeItem('feedback-form-state');
